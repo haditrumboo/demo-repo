@@ -1,15 +1,25 @@
-// let a = 10;
-// let b = 20;
- 
-// function add (x, y) {
-//     return x + y;
-// }
-
-console.log(add(a, b));
 const express = require('express');
 const app = express();
 
+let count = 0; // g counter.
+
+function reqcount(req, res, next) {
+    count++;
+    console.log(`Number of requests: ${count}`);
+    next();
+}
+
+app.use(reqcount);
+
 app.get('/', (req, res) => {
-    res.json({message: 'Hello World!'})
-})
-app.listen(3000);
+    const a = Number(req.query.a);
+    const b = Number(req.query.b);
+
+    res.json({
+        ans: a + b
+    });
+});
+
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
+});
