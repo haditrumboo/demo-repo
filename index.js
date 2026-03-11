@@ -15,6 +15,13 @@ app.get('/', (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
+
+     if (isNaN(a) || isNaN(b)) {
+        return res.status(400).json({
+            error: "Please provide valid numbers"
+        });
+    }
+
     res.json({
         ans: a + b
     });
