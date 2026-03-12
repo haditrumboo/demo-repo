@@ -5,7 +5,8 @@ let count = 0; // g counter.
 
 function reqcount(req, res, next) {
     count++;
-    console.log(`Number of requests: ${count}`);
+    const time = new Date().toLocaleTimeString();
+    console.log(`Request #${count} | Method: ${req.method} | Path: ${req.path} | Time: ${time}`);
     next();
 }
 
