@@ -9,19 +9,30 @@ function reqcount(req, res, next) {
     console.log(`Request #${count} | Method: ${req.method} | Path: ${req.path} | Time: ${time}`);
     next();
 }
+function validnumbers(req, res, next) {  
+    const a = Number(req.query.a);
+    const b = Number(req.query.b);
+    
+    if (isNaN(a) || isNaN(b)) {
+        return res.status(400).json({
+            error: "please enter a valid number."
+        });
+    }
+    next();  
+}
 
 app.use(reqcount);
 
-app.get('/', (req, res) => {
+app.get('/', validnumbers, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
 
-     if (isNaN(a) || isNaN(b)) {
-        return res.status(400).json({
-            error: "Please provide valid numbers"
-        });
-    }
+    //  if (isNaN(a) || isNaN(b)) {
+    //     return res.status(400).json({
+    //         error: "Please provide valid numbers"
+    //     });
+    // }
 
     res.json({
         ans: a + b
@@ -29,13 +40,13 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/divide', (req, res) => {
+app.get('/divide', validnumbers, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
-    if (isNaN(a) || isNaN(b)) {
-        return res.status(400).json({ error: "Please provide valid numbers" });
-    }
+    // if (isNaN(a) || isNaN(b)) {
+    //     return res.status(400).json({ error: "Please provide valid numbers" });
+    // }
 
     if (b === 0) {
         return res.status(400).json({ error: "Cannot divide by zero" });
