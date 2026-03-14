@@ -30,13 +30,22 @@ app.use((err, req, res, next) => {
 
 app.use(reqcount);
 
-app.get('/', validnumbers, (req, res) => {
+app.get('/add', validnumbers, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
     res.json({
         ans: a + b
     });
 });
+app.get('/subtract', validnumbers, (req, res) => {
+    const a = Number(req.query.a);
+    const b = Number(req.query.b);
+
+    res.json({
+        ans: a - b
+    });
+});
+
 
 
 app.get('/divide', validnumbers, (req, res) => {
