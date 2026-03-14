@@ -26,14 +26,6 @@ app.use(reqcount);
 app.get('/', validnumbers, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
-
-
-    //  if (isNaN(a) || isNaN(b)) {
-    //     return res.status(400).json({
-    //         error: "Please provide valid numbers"
-    //     });
-    // }
-
     res.json({
         ans: a + b
     });
@@ -44,15 +36,19 @@ app.get('/divide', validnumbers, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
-    // if (isNaN(a) || isNaN(b)) {
-    //     return res.status(400).json({ error: "Please provide valid numbers" });
-    // }
-
     if (b === 0) {
         return res.status(400).json({ error: "Cannot divide by zero" });
     }
 
     res.json({ ans: a / b });
+});
+app.get('/multiply', validnumbers, (req, res) => {
+    const a = Number(req.query.a);
+    const b = Number(req.query.b);
+
+    res.json({
+        ans: a * b
+    });
 });
 
 
