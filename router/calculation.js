@@ -7,7 +7,7 @@ const router = Router();
 router.get('/add', validnum, reqcount, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
-    res.json({
+    res.status(200).json({
         ans: a + b
     });
 });
@@ -15,7 +15,7 @@ router.get('/subtract', validnum, reqcount, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
-    res.json({
+    res.status(200).json({
         ans: a - b
     });
 });
@@ -30,13 +30,13 @@ router.get('/divide', validnum, (req, res) => {
         return res.status(400).json({ error: "Cannot divide by zero" });
     }
 
-    res.json({ ans: a / b });
+    res.status(200).json({ ans: a / b });
 });
 router.get('/multiply', validnum, (req, res) => {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
-    res.json({
+    res.status(200).json({
         ans: a * b
     });
 });
