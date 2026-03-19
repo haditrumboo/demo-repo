@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const { router } = require("./router/calculation")
 
+app.get("/", (req, res) => {
+    res.status(200).send("API is running 🚀");
+});
+
+
 app.use("/number", router)
 
 // error handler...
