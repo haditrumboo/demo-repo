@@ -40,6 +40,16 @@ router.get('/multiply', validnum, (req, res) => {
         ans: a * b
     });
 });
+router.get('/modulo', validnum, reqcount, (req, res) => {
+    const a = Number(req.query.a);
+    const b = Number(req.query.b);
+
+    if (b === 0) {
+        return res.status(400).json({ error: "Cannot modulo by zero" });
+    }
+
+    res.status(200).json({ ans: a % b });
+});
 
 module.exports = {
     router: router
